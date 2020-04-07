@@ -56,6 +56,17 @@ jobs:
           name: Danger
           command: DANGER_GITHUB_API_TOKEN="15e52de81a772b174cc5""e1813d0083564c69c325" yarn danger ci
 
+  build_review_app:
+    docker:
+      - image: circleci/node:10.0-browsers
+    steps:
+      - run:
+          name: Print Branch Name
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Name of review app
+          command: echo $CIRCLE_BRANCH | sed 's/review-app-//'
+
 not_master_or_staging_or_release: &not_master_or_staging_or_release
   filters:
     branches:
@@ -154,3 +165,9 @@ workflows:
           requires:
             - horizon/block
             - validate_production_schema
+
+      - build_review_app:
+          filters:
+            branches:
+              only:
+                - review\-app\-(\w+)
