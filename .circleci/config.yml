@@ -60,9 +60,6 @@ jobs:
     executor: hokusai/deploy
     steps:
       - run:
-          name: Print Branch Name
-          command: echo ${CIRCLE_BRANCH}
-      - run:
           name: Name of review app
           command: echo $CIRCLE_BRANCH | sed 's/review-app-//'
       - hokusai/setup
@@ -71,6 +68,9 @@ jobs:
       - run:
           name: A Hokusai thing
           command: hokusai check
+      - run:
+          name: "Create review app"
+          command: ./scripts/build_review_app.sh $(echo $CIRCLE_BRANCH | sed 's/review-app-//')
 
 not_master_or_staging_or_release: &not_master_or_staging_or_release
   filters:
