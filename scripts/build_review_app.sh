@@ -23,7 +23,7 @@ fi
 
 # Generate the Kubernetes YAML needed to provision the application.
 hokusai review_app setup $NAME
-local review_app_file_path="hokusai/$NAME.yml"
+review_app_file_path="hokusai/$NAME.yml"
 
 # Create the Docker image of your current working direct of Force, and push
 # it to Artsy's docker registry.
