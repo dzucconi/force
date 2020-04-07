@@ -57,8 +57,7 @@ jobs:
           command: DANGER_GITHUB_API_TOKEN="15e52de81a772b174cc5""e1813d0083564c69c325" yarn danger ci
 
   build_review_app:
-    docker:
-      - image: circleci/node:10.0-browsers
+    executor: hokusai/deploy
     steps:
       - run:
           name: Print Branch Name
@@ -66,6 +65,10 @@ jobs:
       - run:
           name: Name of review app
           command: echo $CIRCLE_BRANCH | sed 's/review-app-//'
+      - hokusai/setup
+      - run:
+          name: A Hokusai thing
+          command: hokusai check
 
 not_master_or_staging_or_release: &not_master_or_staging_or_release
   filters:
@@ -167,7 +170,8 @@ workflows:
             - validate_production_schema
 
       - build_review_app:
+          context: hokusai
           filters:
             branches:
               only:
-                - review\-app\-(\w+)
+                - /review\-app\-(\w+)/
