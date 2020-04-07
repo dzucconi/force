@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Name of review app
           command: echo $CIRCLE_BRANCH | sed 's/review-app-//'
-      - hokusai/setup
+      - hokusai/setup-docker
       - hokusai/install-aws-iam-authenticator
       - hokusai/configure-hokusai
       - run:
