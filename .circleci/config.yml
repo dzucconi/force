@@ -66,9 +66,6 @@ jobs:
       - hokusai/install-aws-iam-authenticator
       - hokusai/configure-hokusai
       - run:
-          name: A Hokusai thing
-          command: hokusai check
-      - run:
           name: "Create review app"
           command: ./scripts/build_review_app.sh $(echo $CIRCLE_BRANCH | sed 's/review-app-//')
 
