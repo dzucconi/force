@@ -174,4 +174,4 @@ workflows:
           filters:
             branches:
               only:
-                - /review\-app\-(\w+)/
+                - /^review-app-/
