@@ -173,5 +173,4 @@ workflows:
           context: hokusai
           filters:
             branches:
-              only:
-                - /^review-app-/
+              only: /^review-app-.*/
