@@ -59,12 +59,12 @@ jobs:
   build_review_app:
     executor: hokusai/deploy
     steps:
-      - run:
-          name: Name of review app
-          command: echo $CIRCLE_BRANCH | sed 's/review-app-//'
       - hokusai/setup-docker
       - hokusai/install-aws-iam-authenticator
       - hokusai/configure-hokusai
+      - run:
+          name: Install jq
+          command: sudo apt-get install jq
       - run:
           name: "Create review app"
           command: ./scripts/build_review_app.sh $(echo $CIRCLE_BRANCH | sed 's/review-app-//')
