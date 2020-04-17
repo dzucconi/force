@@ -66,6 +66,9 @@ jobs:
           name: Install jq
           command: curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 > /usr/local/bin/jq
       - run:
+          name: Make jq executable
+          command: chmod u+x /usr/local/bin/jq
+      - run:
           name: "Create review app"
           command: ./scripts/build_review_app.sh $(echo $CIRCLE_BRANCH | sed 's/review-app-//')
 
