@@ -12,12 +12,13 @@ import { HorizontalPadding } from "v2/Apps/Components/HorizontalPadding"
 import { ArtistInfoFragmentContainer as ArtistInfo } from "./Components/ArtistInfo"
 import { ArtworkBannerFragmentContainer as ArtworkBanner } from "./Components/ArtworkBanner"
 import { ArtworkDetailsFragmentContainer as ArtworkDetails } from "./Components/ArtworkDetails"
-import { ArtworkImageBrowserFragmentContainer as ArtworkImageBrowser } from "./Components/ArtworkImageBrowser"
 import { ArtworkMetaFragmentContainer as ArtworkMeta } from "./Components/ArtworkMeta"
 import { ArtworkRelatedArtistsPaginationContainer as RelatedArtists } from "./Components/ArtworkRelatedArtists"
 import { ArtworkSidebarFragmentContainer as ArtworkSidebar } from "./Components/ArtworkSidebar"
 import { OtherWorksFragmentContainer as OtherWorks } from "./Components/OtherWorks"
 import { PricingContextFragmentContainer as PricingContext } from "./Components/PricingContext"
+import { ArtworkImagesFragmentContainer as ArtworkImages } from "./Components/ArtworkImages/ArtworkImages"
+import { ArtworkImageSwiperFragmentContainer as ArtworkImageSwiper } from "./Components/ArtworkImageSwiper"
 
 import { SystemContextConsumer } from "v2/Artsy"
 import { track } from "v2/Artsy/Analytics"
@@ -193,7 +194,7 @@ export class ArtworkApp extends React.Component<Props> {
           <Media at="xs">
             <Row>
               <Col>
-                <ArtworkImageBrowser artwork={artwork} />
+                <ArtworkImageSwiper artwork={artwork} />
                 <ArtworkSidebar artwork={artwork} me={me} />
                 <ArtworkDetails artwork={artwork} />
                 <PricingContext artwork={artwork} />
@@ -207,7 +208,7 @@ export class ArtworkApp extends React.Component<Props> {
             <Row>
               <Col sm={8}>
                 <Box pr={4}>
-                  <ArtworkImageBrowser artwork={artwork} />
+                  <ArtworkImages artwork={artwork} />
                   <ArtworkDetails artwork={artwork} />
                   <PricingContext artwork={artwork} />
                   {this.renderArtists()}
@@ -334,6 +335,8 @@ export const ArtworkAppFragmentContainer = createFragmentContainer(
         ...OtherWorks_artwork
           @arguments(shouldFetchArtistSeriesData: $shouldFetchArtistSeriesData)
         ...PricingContext_artwork
+        ...ArtworkImages_artwork
+        ...ArtworkImageSwiper_artwork
       }
     `,
     me: graphql`
