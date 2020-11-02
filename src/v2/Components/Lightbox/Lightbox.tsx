@@ -1,4 +1,4 @@
-import { Box, Clickable, Flex, Image, color, space } from "@artsy/palette"
+import { Box, Clickable, Flex, Image, ModalBase, space } from "@artsy/palette"
 import { withSystemContext } from "v2/Artsy"
 import * as Schema from "v2/Artsy/Analytics/Schema"
 import FadeTransition from "v2/Components/Animation/FadeTransition"
@@ -7,23 +7,12 @@ import React from "react"
 import ReactDOM from "react-dom"
 import track from "react-tracking"
 import styled from "styled-components"
-import { userIsAdmin } from "v2/Utils/user"
 import { CloseButton } from "./CloseButton"
 import { Slider, SliderProps } from "./LightboxSlider"
 
 const KEYBOARD_EVENT = "keyup"
 const ZOOM_PER_CLICK = 1.4
 const HIDE_ZOOM_SLIDER_AFTER = 2500
-
-const DeepZoomContainer = styled.div`
-  position: fixed !important;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  background-color: ${color("black100")};
-`
 
 const StyledImage = styled(Image)`
   max-width: 100%;
@@ -234,66 +223,59 @@ class LightboxComponent extends React.Component<LightboxProps, LightboxState> {
         unmountOnExit
         timeout={{ enter: 250, exit: 300 }}
       >
-        <DeepZoomContainer
-          onMouseMove={this.detectActivity}
-          onWheel={this.detectActivity}
-          onTouchStart={this.detectActivity}
-          onTouchMove={this.detectActivity}
-          ref={this.state.deepZoomRef as any /* TODO Update SC */}
+        <ModalBase
+          dialogProps={{ width: "100%", height: "100%", bg: "black100" }}
         >
           <Box
-            position="absolute"
-            top={space(3) / 2}
-            right={space(3) / 2}
-            zIndex={1001}
-          >
-            <CloseButton onClick={() => this.hide()} />
-          </Box>
-          <Flex
-            position="absolute"
             width="100%"
-            justifyContent="center"
-            zIndex={1001}
-            bottom={space(2)}
+            height="100%"
+            onMouseMove={this.detectActivity}
+            onWheel={this.detectActivity}
+            onTouchStart={this.detectActivity}
+            onTouchMove={this.detectActivity}
+            ref={this.state.deepZoomRef as any}
           >
-            <FadeTransition
-              in={this.state.showZoomSlider}
-              timeout={{ enter: 50, exit: 150 }}
+            <CloseButton
+              position="absolute"
+              top={0}
+              right={0}
+              p={1.5}
+              zIndex={1}
+              onClick={() => this.hide()}
+            />
+
+            <Flex
+              position="absolute"
+              width="100%"
+              justifyContent="center"
+              zIndex={1}
+              p={2}
+              bottom={0}
             >
-              <Slider
-                min={slider.min}
-                max={slider.max}
-                step={slider.step}
-                value={slider.value}
-                onChange={this.onSliderChanged}
-                onZoomInClicked={() => this.zoomIn()}
-                onZoomOutClicked={() => this.zoomOut()}
-              />
-            </FadeTransition>
-          </Flex>
-        </DeepZoomContainer>
+              <FadeTransition
+                in={this.state.showZoomSlider}
+                timeout={{ enter: 50, exit: 150 }}
+              >
+                <Slider
+                  min={slider.min}
+                  max={slider.max}
+                  step={slider.step}
+                  value={slider.value}
+                  onChange={this.onSliderChanged}
+                  onZoomInClicked={() => this.zoomIn()}
+                  onZoomOutClicked={() => this.zoomOut()}
+                />
+              </FadeTransition>
+            </Flex>
+          </Box>
+        </ModalBase>
       </FadeTransition>
     )
   }
 
-  renderPortal = () => {
-    return this.state.element
-      ? ReactDOM.createPortal(this.renderLightbox(), this.state.element)
-      : null
-  }
-
   render() {
-    const {
-      enabled,
-      children,
-      isDefault,
-      imageAlt,
-      src,
-      initialHeight,
-      user,
-    } = this.props
+    const { enabled, children, imageAlt, src, initialHeight } = this.props
     const height = initialHeight || "auto"
-    const isAdmin = userIsAdmin(user)
 
     // Only render client-side
     if (!this.state.element) {
@@ -311,7 +293,7 @@ class LightboxComponent extends React.Component<LightboxProps, LightboxState> {
 
     return (
       <>
-        {this.renderPortal()}
+        {this.renderLightbox()}
         <Clickable
           style={{ cursor: enabled ? "zoom-in" : "auto" }}
           onClick={enabled ? this.show.bind(this) : null}

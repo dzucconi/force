@@ -33,14 +33,24 @@ interface ArtworkBrowserProps {
 }
 
 export const ArtworkImageBrowser = (props: ArtworkBrowserProps) => {
+  const [activeIndex, setActiveIndex] = useState(0)
+
   return (
     <>
       <Media at="xs">
-        <SmallArtworkImageBrowser {...props} />
+        <SmallArtworkImageBrowser
+          {...props}
+          onChange={setActiveIndex}
+          activeIndex={activeIndex}
+        />
       </Media>
 
       <Media greaterThan="xs">
-        <LargeArtworkImageBrowser {...props} />
+        <LargeArtworkImageBrowser
+          {...props}
+          onChange={setActiveIndex}
+          activeIndex={activeIndex}
+        />
       </Media>
     </>
   )
@@ -81,15 +91,20 @@ export const ArtworkImageBrowserFragmentContainer = createFragmentContainer(
   }
 )
 
-export const LargeArtworkImageBrowser: React.FC<ArtworkBrowserProps> = ({
-  artwork,
-}) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+interface LargeArtworkImageBrowserProps extends ArtworkBrowserProps {
+  activeIndex: number
+  onChange(index: number): void
+}
 
+export const LargeArtworkImageBrowser: React.FC<LargeArtworkImageBrowserProps> = ({
+  artwork,
+  activeIndex,
+  onChange,
+}) => {
   return (
     <Container>
       <Carousel
-        onChange={setActiveIndex}
+        onChange={onChange}
         Cell={React.forwardRef((props, ref) => {
           return (
             <CarouselCell
@@ -149,16 +164,21 @@ export const LargeArtworkImageBrowser: React.FC<ArtworkBrowserProps> = ({
   )
 }
 
-export const SmallArtworkImageBrowser: React.FC<ArtworkBrowserProps> = ({
-  artwork,
-}) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+interface SmallArtworkImageBrowserProps extends ArtworkBrowserProps {
+  activeIndex: number
+  onChange(index: number): void
+}
 
+export const SmallArtworkImageBrowser: React.FC<SmallArtworkImageBrowserProps> = ({
+  artwork,
+  activeIndex,
+  onChange,
+}) => {
   return (
     <Container>
       <Swiper
         snap="center"
-        onChange={setActiveIndex}
+        onChange={onChange}
         Cell={React.forwardRef((props, ref) => {
           return (
             <SwiperCell
