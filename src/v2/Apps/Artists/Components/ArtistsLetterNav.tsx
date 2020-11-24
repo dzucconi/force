@@ -1,8 +1,30 @@
-import { Box, BoxProps, space, Text } from "@artsy/palette"
+import { Box, BoxProps, color, space, Text } from "@artsy/palette"
 import React from "react"
+import styled from "styled-components"
 import { RouterLink } from "v2/Artsy/Router/RouterLink"
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+
+const Container = styled(Box)`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`
+
+const Letter = styled(RouterLink)`
+  display: block;
+  padding: ${space(0.5)}px ${space(1)}px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+
+  &.active {
+    color: ${color("black100")};
+    background-color: ${color("black5")};
+    font-weight: bold;
+  }
+`
 
 interface ArtistsLetterNavProps extends BoxProps {}
 
@@ -10,36 +32,21 @@ export const ArtistsLetterNav: React.FC<ArtistsLetterNavProps> = ({
   ...rest
 }) => {
   return (
-    <Box
-      display="flex"
-      flexDirection={["column", "row"]}
-      justifyContent="space-between"
-      alignItems="center"
-      borderTop={["none", "1px solid"]}
-      borderBottom={["none", "1px solid"]}
-      borderColor={["transparent", "black10"]}
-      py={[0, 2]}
-      px={[2, 0]}
-      {...rest}
-    >
-      <Text>Browse over 100,000 artists</Text>
-
-      <Box display="flex" flexWrap="wrap" justifyContent="center">
-        {LETTERS.map(letter => {
-          return (
-            <Text key={letter}>
-              <RouterLink
-                key={letter}
-                to={`/artists/${letter}`}
-                style={{ padding: space(0.5), textDecoration: "none" }}
-                title={`View artists starting with “${letter}”`}
-              >
-                {letter}
-              </RouterLink>
-            </Text>
-          )
-        })}
-      </Box>
-    </Box>
+    <Container {...rest}>
+      {LETTERS.map(letter => {
+        return (
+          <Text key={letter} variant="text" color="black60">
+            <Letter
+              key={letter}
+              activeClassName="active"
+              to={`/artists/artists-starting-with-${letter.toLowerCase()}`}
+              title={`View artists starting with “${letter}”`}
+            >
+              {letter}
+            </Letter>
+          </Text>
+        )
+      })}
+    </Container>
   )
 }

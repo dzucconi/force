@@ -6,10 +6,10 @@ import { FragmentRefs } from "relay-runtime";
 export type artistsRoutes_ArtistsQueryVariables = {};
 export type artistsRoutes_ArtistsQueryResponse = {
     readonly featuredArtists: ReadonlyArray<{
-        readonly " $fragmentRefs": FragmentRefs<"ArtistsApp_featuredArtists">;
+        readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredArtists">;
     } | null> | null;
     readonly featuredGenes: ReadonlyArray<{
-        readonly " $fragmentRefs": FragmentRefs<"ArtistsApp_featuredGenes">;
+        readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredGenes">;
     } | null> | null;
 };
 export type artistsRoutes_ArtistsQuery = {
@@ -22,58 +22,12 @@ export type artistsRoutes_ArtistsQuery = {
 /*
 query artistsRoutes_ArtistsQuery {
   featuredArtists: orderedSets(key: "homepage:featured-artists") {
-    ...ArtistsApp_featuredArtists
+    ...ArtistsIndex_featuredArtists
     id
   }
   featuredGenes: orderedSets(key: "artists:featured-genes") {
-    ...ArtistsApp_featuredGenes
+    ...ArtistsIndex_featuredGenes
     id
-  }
-}
-
-fragment ArtistsApp_featuredArtists on OrderedSet {
-  name
-  artists: items {
-    __typename
-    ... on FeaturedLink {
-      internalID
-      id
-    }
-    ...ArtistsCarouselCell_featuredLink
-    ... on Node {
-      id
-    }
-  }
-}
-
-fragment ArtistsApp_featuredGenes on OrderedSet {
-  name
-  genes: items {
-    __typename
-    ... on Gene {
-      internalID
-      name
-      href
-      image {
-        thumb: cropped(width: 80, height: 80) {
-          width
-          height
-          src
-          srcSet
-        }
-      }
-      trendingArtists(sample: 4) {
-        internalID
-        ...ArtistsArtistCard_artist
-        id
-      }
-    }
-    ... on Node {
-      id
-    }
-    ... on FeaturedLink {
-      id
-    }
   }
 }
 
@@ -107,6 +61,52 @@ fragment ArtistsCarouselCell_featuredLink on FeaturedLink {
       height
       src
       srcSet
+    }
+  }
+}
+
+fragment ArtistsIndex_featuredArtists on OrderedSet {
+  name
+  artists: items {
+    __typename
+    ... on FeaturedLink {
+      internalID
+      id
+    }
+    ...ArtistsCarouselCell_featuredLink
+    ... on Node {
+      id
+    }
+  }
+}
+
+fragment ArtistsIndex_featuredGenes on OrderedSet {
+  name
+  genes: items {
+    __typename
+    ... on Gene {
+      internalID
+      name
+      href
+      image {
+        thumb: cropped(width: 80, height: 80) {
+          width
+          height
+          src
+          srcSet
+        }
+      }
+      trendingArtists(sample: 4) {
+        internalID
+        ...ArtistsArtistCard_artist
+        id
+      }
+    }
+    ... on Node {
+      id
+    }
+    ... on FeaturedLink {
+      id
     }
   }
 }
@@ -221,7 +221,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ArtistsApp_featuredArtists"
+            "name": "ArtistsIndex_featuredArtists"
           }
         ],
         "storageKey": "orderedSets(key:\"homepage:featured-artists\")"
@@ -237,7 +237,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ArtistsApp_featuredGenes"
+            "name": "ArtistsIndex_featuredGenes"
           }
         ],
         "storageKey": "orderedSets(key:\"artists:featured-genes\")"
@@ -516,9 +516,9 @@ return {
     "metadata": {},
     "name": "artistsRoutes_ArtistsQuery",
     "operationKind": "query",
-    "text": "query artistsRoutes_ArtistsQuery {\n  featuredArtists: orderedSets(key: \"homepage:featured-artists\") {\n    ...ArtistsApp_featuredArtists\n    id\n  }\n  featuredGenes: orderedSets(key: \"artists:featured-genes\") {\n    ...ArtistsApp_featuredGenes\n    id\n  }\n}\n\nfragment ArtistsApp_featuredArtists on OrderedSet {\n  name\n  artists: items {\n    __typename\n    ... on FeaturedLink {\n      internalID\n      id\n    }\n    ...ArtistsCarouselCell_featuredLink\n    ... on Node {\n      id\n    }\n  }\n}\n\nfragment ArtistsApp_featuredGenes on OrderedSet {\n  name\n  genes: items {\n    __typename\n    ... on Gene {\n      internalID\n      name\n      href\n      image {\n        thumb: cropped(width: 80, height: 80) {\n          width\n          height\n          src\n          srcSet\n        }\n      }\n      trendingArtists(sample: 4) {\n        internalID\n        ...ArtistsArtistCard_artist\n        id\n      }\n    }\n    ... on Node {\n      id\n    }\n    ... on FeaturedLink {\n      id\n    }\n  }\n}\n\nfragment ArtistsArtistCard_artist on Artist {\n  ...FollowArtistButton_artist\n  name\n  href\n  formattedNationalityAndBirthday\n  counts {\n    artworks\n    forSaleArtworks\n  }\n  image {\n    thumb: cropped(width: 270, height: 200) {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsCarouselCell_featuredLink on FeaturedLink {\n  internalID\n  title\n  subtitle\n  href\n  image {\n    thumb: cropped(width: 546, height: 410, version: \"wide\") {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment FollowArtistButton_artist on Artist {\n  id\n  internalID\n  name\n  slug\n  is_followed: isFollowed\n  counts {\n    follows\n  }\n}\n"
+    "text": "query artistsRoutes_ArtistsQuery {\n  featuredArtists: orderedSets(key: \"homepage:featured-artists\") {\n    ...ArtistsIndex_featuredArtists\n    id\n  }\n  featuredGenes: orderedSets(key: \"artists:featured-genes\") {\n    ...ArtistsIndex_featuredGenes\n    id\n  }\n}\n\nfragment ArtistsArtistCard_artist on Artist {\n  ...FollowArtistButton_artist\n  name\n  href\n  formattedNationalityAndBirthday\n  counts {\n    artworks\n    forSaleArtworks\n  }\n  image {\n    thumb: cropped(width: 270, height: 200) {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsCarouselCell_featuredLink on FeaturedLink {\n  internalID\n  title\n  subtitle\n  href\n  image {\n    thumb: cropped(width: 546, height: 410, version: \"wide\") {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredArtists on OrderedSet {\n  name\n  artists: items {\n    __typename\n    ... on FeaturedLink {\n      internalID\n      id\n    }\n    ...ArtistsCarouselCell_featuredLink\n    ... on Node {\n      id\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredGenes on OrderedSet {\n  name\n  genes: items {\n    __typename\n    ... on Gene {\n      internalID\n      name\n      href\n      image {\n        thumb: cropped(width: 80, height: 80) {\n          width\n          height\n          src\n          srcSet\n        }\n      }\n      trendingArtists(sample: 4) {\n        internalID\n        ...ArtistsArtistCard_artist\n        id\n      }\n    }\n    ... on Node {\n      id\n    }\n    ... on FeaturedLink {\n      id\n    }\n  }\n}\n\nfragment FollowArtistButton_artist on Artist {\n  id\n  internalID\n  name\n  slug\n  is_followed: isFollowed\n  counts {\n    follows\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '8fa2b251a98ef9ff602c5df4d92d49cf';
+(node as any).hash = 'e995ed1e0e3f670fa678146e605d76f8';
 export default node;

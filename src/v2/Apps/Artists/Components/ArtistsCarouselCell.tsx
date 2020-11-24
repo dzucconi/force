@@ -6,6 +6,11 @@ import { RouterLink } from "v2/Artsy/Router/RouterLink"
 import { FollowArtistButtonQueryRenderer } from "v2/Components/FollowButton/FollowArtistButton"
 import { ArtistsCarouselCell_featuredLink } from "v2/__generated__/ArtistsCarouselCell_featuredLink.graphql"
 
+const getSlug = (href: string) => {
+  const components = href.split("/")
+  return components[components.indexOf("artist") + 1]
+}
+
 interface ArtistsCarouselCellProps {
   featuredLink: ArtistsCarouselCell_featuredLink
   index: number
@@ -18,6 +23,10 @@ export const ArtistsCarouselCell: React.FC<ArtistsCarouselCellProps> = ({
   const { image } = featuredLink
 
   if (!image) return null
+
+  const slug = getSlug(featuredLink.href)
+
+  console.log({ slug })
 
   return (
     <RouterLink
@@ -42,7 +51,7 @@ export const ArtistsCarouselCell: React.FC<ArtistsCarouselCellProps> = ({
         </Box>
 
         <FollowArtistButtonQueryRenderer
-          id={featuredLink.internalID}
+          id={slug}
           contextModule={ContextModule.featuredArtistsRail}
         />
       </Box>

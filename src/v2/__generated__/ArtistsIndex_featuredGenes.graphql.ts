@@ -3,7 +3,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ArtistsApp_featuredGenes = ReadonlyArray<{
+export type ArtistsIndex_featuredGenes = ReadonlyArray<{
     readonly name: string | null;
     readonly genes: ReadonlyArray<{
         readonly internalID?: string;
@@ -22,12 +22,12 @@ export type ArtistsApp_featuredGenes = ReadonlyArray<{
             readonly " $fragmentRefs": FragmentRefs<"ArtistsArtistCard_artist">;
         } | null> | null;
     } | null> | null;
-    readonly " $refType": "ArtistsApp_featuredGenes";
+    readonly " $refType": "ArtistsIndex_featuredGenes";
 }>;
-export type ArtistsApp_featuredGenes$data = ArtistsApp_featuredGenes;
-export type ArtistsApp_featuredGenes$key = ReadonlyArray<{
-    readonly " $data"?: ArtistsApp_featuredGenes$data;
-    readonly " $fragmentRefs": FragmentRefs<"ArtistsApp_featuredGenes">;
+export type ArtistsIndex_featuredGenes$data = ArtistsIndex_featuredGenes;
+export type ArtistsIndex_featuredGenes$key = ReadonlyArray<{
+    readonly " $data"?: ArtistsIndex_featuredGenes$data;
+    readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredGenes">;
 }>;
 
 
@@ -53,7 +53,7 @@ return {
   "metadata": {
     "plural": true
   },
-  "name": "ArtistsApp_featuredGenes",
+  "name": "ArtistsIndex_featuredGenes",
   "selections": [
     (v0/*: any*/),
     {
@@ -170,5 +170,5 @@ return {
   "type": "OrderedSet"
 };
 })();
-(node as any).hash = '3e8ff756b62d773e2f6cbb43eddeacf1';
+(node as any).hash = '412d57c2dda16f6c10773671737b1715';
 export default node;

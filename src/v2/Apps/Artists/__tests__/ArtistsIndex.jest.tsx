@@ -1,31 +1,31 @@
 import React from "react"
 import { graphql } from "react-relay"
-import ArtistsApp from "../ArtistsApp"
+import { ArtistsIndex } from "../Routes/ArtistsIndex"
 import { setupTestWrapper } from "v2/DevTools/setupTestWrapper"
-import { ArtistsApp_Test_Query } from "v2/__generated__/ArtistsApp_Test_Query.graphql"
+import { ArtistsIndex_Test_Query } from "v2/__generated__/ArtistsIndex_Test_Query.graphql"
 import { MockBoot } from "v2/DevTools"
 
 jest.unmock("react-relay")
 
-const { getWrapper } = setupTestWrapper<ArtistsApp_Test_Query>({
+const { getWrapper } = setupTestWrapper<ArtistsIndex_Test_Query>({
   Component: props => (
     <MockBoot>
-      <ArtistsApp {...props} />
+      <ArtistsIndex {...props} />
     </MockBoot>
   ),
   query: graphql`
-    query ArtistsApp_Test_Query {
+    query ArtistsIndex_Test_Query {
       featuredArtists: orderedSets(key: "homepage:featured-artists") {
-        ...ArtistsApp_featuredArtists
+        ...ArtistsIndex_featuredArtists
       }
       featuredGenes: orderedSets(key: "artists:featured-genes") {
-        ...ArtistsApp_featuredGenes
+        ...ArtistsIndex_featuredGenes
       }
     }
   `,
 })
 
-describe("ArtistsApp", () => {
+describe("ArtistsIndex", () => {
   it("renders the page", () => {
     const wrapper = getWrapper({
       OrderedSet: () => ({ name: "Featured Artists" }),

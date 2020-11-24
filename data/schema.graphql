@@ -8505,6 +8505,15 @@ type Query {
     sort: ArtistSorts
   ): [Artist]
 
+  # Alphabetical index of artists by name
+  artistsByLetterConnection(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    letter: String! = "a"
+  ): ArtistConnection
+
   # Find an artist series by ID
   artistSeries(id: ID!): ArtistSeries
 
@@ -10794,6 +10803,15 @@ type Viewer {
     slugs: [String]
     sort: ArtistSorts
   ): [Artist]
+
+  # Alphabetical index of artists by name
+  artistsByLetterConnection(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    letter: String! = "a"
+  ): ArtistConnection
 
   # An Artwork
   artwork(

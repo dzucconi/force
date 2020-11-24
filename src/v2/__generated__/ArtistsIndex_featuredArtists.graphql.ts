@@ -3,18 +3,18 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ArtistsApp_featuredArtists = ReadonlyArray<{
+export type ArtistsIndex_featuredArtists = ReadonlyArray<{
     readonly name: string | null;
     readonly artists: ReadonlyArray<{
         readonly internalID?: string | null;
         readonly " $fragmentRefs": FragmentRefs<"ArtistsCarouselCell_featuredLink">;
     } | null> | null;
-    readonly " $refType": "ArtistsApp_featuredArtists";
+    readonly " $refType": "ArtistsIndex_featuredArtists";
 }>;
-export type ArtistsApp_featuredArtists$data = ArtistsApp_featuredArtists;
-export type ArtistsApp_featuredArtists$key = ReadonlyArray<{
-    readonly " $data"?: ArtistsApp_featuredArtists$data;
-    readonly " $fragmentRefs": FragmentRefs<"ArtistsApp_featuredArtists">;
+export type ArtistsIndex_featuredArtists$data = ArtistsIndex_featuredArtists;
+export type ArtistsIndex_featuredArtists$key = ReadonlyArray<{
+    readonly " $data"?: ArtistsIndex_featuredArtists$data;
+    readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredArtists">;
 }>;
 
 
@@ -25,7 +25,7 @@ const node: ReaderFragment = {
   "metadata": {
     "plural": true
   },
-  "name": "ArtistsApp_featuredArtists",
+  "name": "ArtistsIndex_featuredArtists",
   "selections": [
     {
       "alias": null,
@@ -66,5 +66,5 @@ const node: ReaderFragment = {
   ],
   "type": "OrderedSet"
 };
-(node as any).hash = 'e9f18f91c88f0430dc7b35ad706014fe';
+(node as any).hash = 'ba28d063a2c65078e8213f2391fc2cd2';
 export default node;
