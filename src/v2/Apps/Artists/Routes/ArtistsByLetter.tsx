@@ -7,6 +7,7 @@ import { useRouter } from "v2/Artsy/Router/useRouter"
 import { PaginationFragmentContainer } from "v2/Components/Pagination"
 import { ArtistsTopNav } from "../Components/ArtistsTopNav"
 import { ArtistsByLetter_viewer } from "v2/__generated__/ArtistsByLetter_viewer.graphql"
+import { ArtistsByLetterMeta } from "../Components/ArtistsByLetterMeta"
 
 const Columns = styled(Box)<{ isLoading: boolean }>`
   column-count: 4;
@@ -62,38 +63,42 @@ export const ArtistsByLetter: React.FC<ArtistsByLetterProps> = ({
   }
 
   return (
-    <Box>
-      <Text my={3}>
-        <RouterLink to="/artists" noUnderline>
-          Artists
-        </RouterLink>{" "}
-        / Browse all 50,000 artists
-      </Text>
+    <>
+      <ArtistsByLetterMeta />
 
-      <ArtistsTopNav my={3}>
-        <Text as="h1" variant="largeTitle">
-          Artists
-          {match.params.letter && <>– {match.params.letter.toUpperCase()}</>}
+      <Box>
+        <Text my={3}>
+          <RouterLink to="/artists2" noUnderline>
+            Artists
+          </RouterLink>{" "}
+          / Browse all 50,000 artists
         </Text>
-      </ArtistsTopNav>
 
-      <Columns my={3} isLoading={isLoading}>
-        {artists.map(({ artist }) => {
-          return (
-            <Text key={artist.internalID}>
-              <Name to={artist.href}>{artist.name}</Name>
-            </Text>
-          )
-        })}
-      </Columns>
+        <ArtistsTopNav my={3}>
+          <Text as="h1" variant="largeTitle">
+            Artists
+            {match.params.letter && <>– {match.params.letter.toUpperCase()}</>}
+          </Text>
+        </ArtistsTopNav>
 
-      <PaginationFragmentContainer
-        hasNextPage={hasNextPage}
-        pageCursors={pageCursors}
-        onNext={handleNext}
-        onClick={handleClick}
-      />
-    </Box>
+        <Columns my={3} isLoading={isLoading}>
+          {artists.map(({ artist }) => {
+            return (
+              <Text key={artist.internalID}>
+                <Name to={artist.href}>{artist.name}</Name>
+              </Text>
+            )
+          })}
+        </Columns>
+
+        <PaginationFragmentContainer
+          hasNextPage={hasNextPage}
+          pageCursors={pageCursors}
+          onNext={handleNext}
+          onClick={handleClick}
+        />
+      </Box>
+    </>
   )
 }
 

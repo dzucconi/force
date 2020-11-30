@@ -6,9 +6,10 @@ import { ArtistsIndex_featuredGenes } from "v2/__generated__/ArtistsIndex_featur
 import { Media } from "v2/Utils/Responsive"
 import { Carousel } from "v2/Components/Carousel"
 import { RouterLink } from "v2/Artsy/Router/RouterLink"
+import { ArtistsIndexMeta } from "../Components/ArtistsIndexMeta"
+import { ArtistsTopNav } from "../Components/ArtistsTopNav"
 import { ArtistsArtistCardFragmentContainer } from "../Components/ArtistsArtistCard"
 import { ArtistsCarouselCellFragmentContainer } from "../Components/ArtistsCarouselCell"
-import { ArtistsTopNav } from "../Components/ArtistsTopNav"
 
 interface ArtistsIndexProps {
   featuredArtists: ArtistsIndex_featuredArtists
@@ -24,6 +25,8 @@ export const ArtistsIndex: React.FC<ArtistsIndexProps> = ({
 
   return (
     <>
+      <ArtistsIndexMeta />
+
       <ArtistsTopNav my={3}>
         <Text>Browse all 50,000 artists</Text>
       </ArtistsTopNav>

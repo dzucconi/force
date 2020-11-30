@@ -66,7 +66,7 @@ export const artistsRoutes: RouteConfig[] = [
       },
     ],
     getComponent: () => ArtistsApp,
-    path: "/artists",
+    path: "/artists2",
     prepare: () => {
       return ArtistsApp.preload()
     },
