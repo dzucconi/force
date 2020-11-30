@@ -36,7 +36,7 @@ interface ArtistsByLetterProps {
 export const ArtistsByLetter: React.FC<ArtistsByLetterProps> = ({
   relay,
   viewer: {
-    artistsByLetterConnection: {
+    artistsConnection: {
       artists,
       pageCursors,
       pageInfo: { endCursor, hasNextPage },
@@ -77,7 +77,7 @@ export const ArtistsByLetter: React.FC<ArtistsByLetterProps> = ({
         <ArtistsTopNav my={3}>
           <Text as="h1" variant="largeTitle">
             Artists
-            {match.params.letter && <>– {match.params.letter.toUpperCase()}</>}
+            {match.params.letter && <> – {match.params.letter.toUpperCase()}</>}
           </Text>
         </ArtistsTopNav>
 
@@ -112,11 +112,7 @@ export const ArtistsByLetterFragmentContainer = createRefetchContainer(
           first: { type: "Int", defaultValue: 100 }
           after: { type: "String" }
         ) {
-        artistsByLetterConnection(
-          letter: $letter
-          first: $first
-          after: $after
-        ) {
+        artistsConnection(letter: $letter, first: $first, after: $after) {
           pageInfo {
             endCursor
             hasNextPage

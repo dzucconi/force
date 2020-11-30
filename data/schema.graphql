@@ -8505,13 +8505,28 @@ type Query {
     sort: ArtistSorts
   ): [Artist]
 
-  # Alphabetical index of artists by name
-  artistsByLetterConnection(
+  # A list of artists
+  artistsConnection(
     after: String
     before: String
     first: Int
+
+    #
+    #         Only return artists matching specified ids.
+    #         Accepts list of ids.
+    #
+    ids: [String]
     last: Int
-    letter: String! = "a"
+    letter: String
+    page: Int
+    size: Int
+
+    #
+    #         Only return artists matching specified slugs.
+    #         Accepts list of slugs. (e.g. 'andy-warhol', 'banksy')
+    #
+    slugs: [String]
+    sort: ArtistSorts
   ): ArtistConnection
 
   # Find an artist series by ID
@@ -10804,13 +10819,28 @@ type Viewer {
     sort: ArtistSorts
   ): [Artist]
 
-  # Alphabetical index of artists by name
-  artistsByLetterConnection(
+  # A list of artists
+  artistsConnection(
     after: String
     before: String
     first: Int
+
+    #
+    #         Only return artists matching specified ids.
+    #         Accepts list of ids.
+    #
+    ids: [String]
     last: Int
-    letter: String! = "a"
+    letter: String
+    page: Int
+    size: Int
+
+    #
+    #         Only return artists matching specified slugs.
+    #         Accepts list of slugs. (e.g. 'andy-warhol', 'banksy')
+    #
+    slugs: [String]
+    sort: ArtistSorts
   ): ArtistConnection
 
   # An Artwork

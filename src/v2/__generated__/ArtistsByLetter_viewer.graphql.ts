@@ -4,7 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type ArtistsByLetter_viewer = {
-    readonly artistsByLetterConnection: {
+    readonly artistsConnection: {
         readonly pageInfo: {
             readonly endCursor: string | null;
             readonly hasNextPage: boolean;
@@ -76,7 +76,7 @@ const node: ReaderFragment = {
       ],
       "concreteType": "ArtistConnection",
       "kind": "LinkedField",
-      "name": "artistsByLetterConnection",
+      "name": "artistsConnection",
       "plural": false,
       "selections": [
         {
@@ -169,5 +169,5 @@ const node: ReaderFragment = {
   ],
   "type": "Viewer"
 };
-(node as any).hash = '3b4dd6522e48733207114e94988cf076';
+(node as any).hash = 'e724dc24a08c071997a89d5305202c36';
 export default node;

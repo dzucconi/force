@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "react-relay"
-import { ArtistsIndex } from "../Routes/ArtistsIndex"
+import { ArtistsIndexFragmentContainer } from "../Routes/ArtistsIndex"
 import { setupTestWrapper } from "v2/DevTools/setupTestWrapper"
 import { ArtistsIndex_Test_Query } from "v2/__generated__/ArtistsIndex_Test_Query.graphql"
 import { MockBoot } from "v2/DevTools"
@@ -10,11 +10,11 @@ jest.unmock("react-relay")
 const { getWrapper } = setupTestWrapper<ArtistsIndex_Test_Query>({
   Component: props => (
     <MockBoot>
-      <ArtistsIndex {...props} />
+      <ArtistsIndexFragmentContainer {...props} />
     </MockBoot>
   ),
   query: graphql`
-    query ArtistsIndex_Test_Query {
+    query ArtistsIndexFragmentContainer_Test_Query {
       featuredArtists: orderedSets(key: "homepage:featured-artists") {
         ...ArtistsIndex_featuredArtists
       }

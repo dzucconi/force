@@ -32,7 +32,7 @@ query artistsRoutes_ArtistsByLetterQuery(
 }
 
 fragment ArtistsByLetter_viewer_1QQa5d on Viewer {
-  artistsByLetterConnection(letter: $letter, first: $first, after: $after) {
+  artistsConnection(letter: $letter, first: $first, after: $after) {
     pageInfo {
       endCursor
       hasNextPage
@@ -182,7 +182,7 @@ return {
             "args": (v1/*: any*/),
             "concreteType": "ArtistConnection",
             "kind": "LinkedField",
-            "name": "artistsByLetterConnection",
+            "name": "artistsConnection",
             "plural": false,
             "selections": [
               {
@@ -327,7 +327,7 @@ return {
     "metadata": {},
     "name": "artistsRoutes_ArtistsByLetterQuery",
     "operationKind": "query",
-    "text": "query artistsRoutes_ArtistsByLetterQuery(\n  $letter: String!\n  $first: Int\n  $after: String\n) {\n  viewer {\n    ...ArtistsByLetter_viewer_1QQa5d\n  }\n}\n\nfragment ArtistsByLetter_viewer_1QQa5d on Viewer {\n  artistsByLetterConnection(letter: $letter, first: $first, after: $after) {\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    pageCursors {\n      ...Pagination_pageCursors\n    }\n    artists: edges {\n      artist: node {\n        internalID\n        name\n        href\n        id\n      }\n    }\n  }\n}\n\nfragment Pagination_pageCursors on PageCursors {\n  around {\n    cursor\n    page\n    isCurrent\n  }\n  first {\n    cursor\n    page\n    isCurrent\n  }\n  last {\n    cursor\n    page\n    isCurrent\n  }\n  previous {\n    cursor\n    page\n  }\n}\n"
+    "text": "query artistsRoutes_ArtistsByLetterQuery(\n  $letter: String!\n  $first: Int\n  $after: String\n) {\n  viewer {\n    ...ArtistsByLetter_viewer_1QQa5d\n  }\n}\n\nfragment ArtistsByLetter_viewer_1QQa5d on Viewer {\n  artistsConnection(letter: $letter, first: $first, after: $after) {\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    pageCursors {\n      ...Pagination_pageCursors\n    }\n    artists: edges {\n      artist: node {\n        internalID\n        name\n        href\n        id\n      }\n    }\n  }\n}\n\nfragment Pagination_pageCursors on PageCursors {\n  around {\n    cursor\n    page\n    isCurrent\n  }\n  first {\n    cursor\n    page\n    isCurrent\n  }\n  last {\n    cursor\n    page\n    isCurrent\n  }\n  previous {\n    cursor\n    page\n  }\n}\n"
   }
 };
 })();

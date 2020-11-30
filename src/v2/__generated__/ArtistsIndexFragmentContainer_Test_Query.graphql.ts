@@ -3,8 +3,8 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ArtistsIndex_Test_QueryVariables = {};
-export type ArtistsIndex_Test_QueryResponse = {
+export type ArtistsIndexFragmentContainer_Test_QueryVariables = {};
+export type ArtistsIndexFragmentContainer_Test_QueryResponse = {
     readonly featuredArtists: ReadonlyArray<{
         readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredArtists">;
     } | null> | null;
@@ -12,15 +12,15 @@ export type ArtistsIndex_Test_QueryResponse = {
         readonly " $fragmentRefs": FragmentRefs<"ArtistsIndex_featuredGenes">;
     } | null> | null;
 };
-export type ArtistsIndex_Test_Query = {
-    readonly response: ArtistsIndex_Test_QueryResponse;
-    readonly variables: ArtistsIndex_Test_QueryVariables;
+export type ArtistsIndexFragmentContainer_Test_Query = {
+    readonly response: ArtistsIndexFragmentContainer_Test_QueryResponse;
+    readonly variables: ArtistsIndexFragmentContainer_Test_QueryVariables;
 };
 
 
 
 /*
-query ArtistsIndex_Test_Query {
+query ArtistsIndexFragmentContainer_Test_Query {
   featuredArtists: orderedSets(key: "homepage:featured-artists") {
     ...ArtistsIndex_featuredArtists
     id
@@ -208,7 +208,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ArtistsIndex_Test_Query",
+    "name": "ArtistsIndexFragmentContainer_Test_Query",
     "selections": [
       {
         "alias": "featuredArtists",
@@ -249,7 +249,7 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "ArtistsIndex_Test_Query",
+    "name": "ArtistsIndexFragmentContainer_Test_Query",
     "selections": [
       {
         "alias": "featuredArtists",
@@ -514,11 +514,11 @@ return {
   "params": {
     "id": null,
     "metadata": {},
-    "name": "ArtistsIndex_Test_Query",
+    "name": "ArtistsIndexFragmentContainer_Test_Query",
     "operationKind": "query",
-    "text": "query ArtistsIndex_Test_Query {\n  featuredArtists: orderedSets(key: \"homepage:featured-artists\") {\n    ...ArtistsIndex_featuredArtists\n    id\n  }\n  featuredGenes: orderedSets(key: \"artists:featured-genes\") {\n    ...ArtistsIndex_featuredGenes\n    id\n  }\n}\n\nfragment ArtistsArtistCard_artist on Artist {\n  ...FollowArtistButton_artist\n  name\n  href\n  formattedNationalityAndBirthday\n  counts {\n    artworks\n    forSaleArtworks\n  }\n  image {\n    thumb: cropped(width: 270, height: 200) {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsCarouselCell_featuredLink on FeaturedLink {\n  internalID\n  title\n  subtitle\n  href\n  image {\n    thumb: cropped(width: 546, height: 410, version: \"wide\") {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredArtists on OrderedSet {\n  name\n  artists: items {\n    __typename\n    ... on FeaturedLink {\n      internalID\n      id\n    }\n    ...ArtistsCarouselCell_featuredLink\n    ... on Node {\n      id\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredGenes on OrderedSet {\n  name\n  genes: items {\n    __typename\n    ... on Gene {\n      internalID\n      name\n      href\n      image {\n        thumb: cropped(width: 80, height: 80) {\n          width\n          height\n          src\n          srcSet\n        }\n      }\n      trendingArtists(sample: 4) {\n        internalID\n        ...ArtistsArtistCard_artist\n        id\n      }\n    }\n    ... on Node {\n      id\n    }\n    ... on FeaturedLink {\n      id\n    }\n  }\n}\n\nfragment FollowArtistButton_artist on Artist {\n  id\n  internalID\n  name\n  slug\n  is_followed: isFollowed\n  counts {\n    follows\n  }\n}\n"
+    "text": "query ArtistsIndexFragmentContainer_Test_Query {\n  featuredArtists: orderedSets(key: \"homepage:featured-artists\") {\n    ...ArtistsIndex_featuredArtists\n    id\n  }\n  featuredGenes: orderedSets(key: \"artists:featured-genes\") {\n    ...ArtistsIndex_featuredGenes\n    id\n  }\n}\n\nfragment ArtistsArtistCard_artist on Artist {\n  ...FollowArtistButton_artist\n  name\n  href\n  formattedNationalityAndBirthday\n  counts {\n    artworks\n    forSaleArtworks\n  }\n  image {\n    thumb: cropped(width: 270, height: 200) {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsCarouselCell_featuredLink on FeaturedLink {\n  internalID\n  title\n  subtitle\n  href\n  image {\n    thumb: cropped(width: 546, height: 410, version: \"wide\") {\n      width\n      height\n      src\n      srcSet\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredArtists on OrderedSet {\n  name\n  artists: items {\n    __typename\n    ... on FeaturedLink {\n      internalID\n      id\n    }\n    ...ArtistsCarouselCell_featuredLink\n    ... on Node {\n      id\n    }\n  }\n}\n\nfragment ArtistsIndex_featuredGenes on OrderedSet {\n  name\n  genes: items {\n    __typename\n    ... on Gene {\n      internalID\n      name\n      href\n      image {\n        thumb: cropped(width: 80, height: 80) {\n          width\n          height\n          src\n          srcSet\n        }\n      }\n      trendingArtists(sample: 4) {\n        internalID\n        ...ArtistsArtistCard_artist\n        id\n      }\n    }\n    ... on Node {\n      id\n    }\n    ... on FeaturedLink {\n      id\n    }\n  }\n}\n\nfragment FollowArtistButton_artist on Artist {\n  id\n  internalID\n  name\n  slug\n  is_followed: isFollowed\n  counts {\n    follows\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'e67a1b40e8ad3d1b318c7ac0619c117d';
+(node as any).hash = 'c1eac90162d5a05fcf55a9199c545bc9';
 export default node;

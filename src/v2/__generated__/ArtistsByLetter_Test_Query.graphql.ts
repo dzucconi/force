@@ -3,25 +3,25 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ArtistsByLetterQueryVariables = {
+export type ArtistsByLetter_Test_QueryVariables = {
     letter: string;
     first?: number | null;
     after?: string | null;
 };
-export type ArtistsByLetterQueryResponse = {
+export type ArtistsByLetter_Test_QueryResponse = {
     readonly viewer: {
         readonly " $fragmentRefs": FragmentRefs<"ArtistsByLetter_viewer">;
     } | null;
 };
-export type ArtistsByLetterQuery = {
-    readonly response: ArtistsByLetterQueryResponse;
-    readonly variables: ArtistsByLetterQueryVariables;
+export type ArtistsByLetter_Test_Query = {
+    readonly response: ArtistsByLetter_Test_QueryResponse;
+    readonly variables: ArtistsByLetter_Test_QueryVariables;
 };
 
 
 
 /*
-query ArtistsByLetterQuery(
+query ArtistsByLetter_Test_Query(
   $letter: String!
   $first: Int
   $after: String
@@ -142,7 +142,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ArtistsByLetterQuery",
+    "name": "ArtistsByLetter_Test_Query",
     "selections": [
       {
         "alias": null,
@@ -167,7 +167,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ArtistsByLetterQuery",
+    "name": "ArtistsByLetter_Test_Query",
     "selections": [
       {
         "alias": null,
@@ -325,11 +325,11 @@ return {
   "params": {
     "id": null,
     "metadata": {},
-    "name": "ArtistsByLetterQuery",
+    "name": "ArtistsByLetter_Test_Query",
     "operationKind": "query",
-    "text": "query ArtistsByLetterQuery(\n  $letter: String!\n  $first: Int\n  $after: String\n) {\n  viewer {\n    ...ArtistsByLetter_viewer_1QQa5d\n  }\n}\n\nfragment ArtistsByLetter_viewer_1QQa5d on Viewer {\n  artistsConnection(letter: $letter, first: $first, after: $after) {\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    pageCursors {\n      ...Pagination_pageCursors\n    }\n    artists: edges {\n      artist: node {\n        internalID\n        name\n        href\n        id\n      }\n    }\n  }\n}\n\nfragment Pagination_pageCursors on PageCursors {\n  around {\n    cursor\n    page\n    isCurrent\n  }\n  first {\n    cursor\n    page\n    isCurrent\n  }\n  last {\n    cursor\n    page\n    isCurrent\n  }\n  previous {\n    cursor\n    page\n  }\n}\n"
+    "text": "query ArtistsByLetter_Test_Query(\n  $letter: String!\n  $first: Int\n  $after: String\n) {\n  viewer {\n    ...ArtistsByLetter_viewer_1QQa5d\n  }\n}\n\nfragment ArtistsByLetter_viewer_1QQa5d on Viewer {\n  artistsConnection(letter: $letter, first: $first, after: $after) {\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    pageCursors {\n      ...Pagination_pageCursors\n    }\n    artists: edges {\n      artist: node {\n        internalID\n        name\n        href\n        id\n      }\n    }\n  }\n}\n\nfragment Pagination_pageCursors on PageCursors {\n  around {\n    cursor\n    page\n    isCurrent\n  }\n  first {\n    cursor\n    page\n    isCurrent\n  }\n  last {\n    cursor\n    page\n    isCurrent\n  }\n  previous {\n    cursor\n    page\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'd46dea583c01ba43ec3ef9c5efe6e5ec';
+(node as any).hash = '5f1520529918010a553111e2a42491d1';
 export default node;
