@@ -22,9 +22,12 @@ const ArticleZoomGalleryFigure: FC<ArticleZoomGalleryFigureProps> = ({
   active,
   preload,
 }) => {
+  console.log({ figure, active })
+
   if (
     figure.__typename !== "Artwork" &&
-    figure.__typename !== "ArticleImageSection"
+    figure.__typename !== "ArticleImageSection" &&
+    figure.__typename !== "ArticleUnpublishedArtwork"
   ) {
     return null
   }
@@ -141,6 +144,13 @@ export const ArticleZoomGalleryFigureFragmentContainer = createFragmentContainer
           }
         }
         ... on ArticleImageSection {
+          image {
+            width
+            height
+            url(version: ["normalized", "larger", "large"])
+          }
+        }
+        ... on ArticleUnpublishedArtwork {
           image {
             width
             height
