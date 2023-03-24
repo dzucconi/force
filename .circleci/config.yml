@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@1.0.5
+  codecov: codecov/codecov@1.2.5
   hokusai: artsy/hokusai@0.7.2
   horizon: artsy/release@0.0.1
   node: artsy/node@dev:dc523d4428b2260798906013dc4d8221
