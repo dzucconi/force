@@ -23,6 +23,7 @@ export interface ActiveFilterPillsAndCreateAlertProps {
 
 const PILL_HORIZONTAL_MARGIN_SIZE = 0.5
 
+// DELETE ME
 export const ActiveFilterPillsAndCreateAlert: React.FC<ActiveFilterPillsAndCreateAlertProps> = props => {
   const { defaultPills = [], savedSearchEntity } = props
   const { pills, removePill } = useActiveFilterPills(defaultPills)
@@ -37,6 +38,7 @@ export const ActiveFilterPillsAndCreateAlert: React.FC<ActiveFilterPillsAndCreat
       mx={-PILL_HORIZONTAL_MARGIN_SIZE}
       // FIXME: Remove
       mb={4}
+      // FIXME: Is this important?
       data-testid="artworkGridFilterPills"
     >
       <SavedSearchAlertPills items={pills} onDeletePress={removePill} />

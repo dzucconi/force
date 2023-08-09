@@ -96,7 +96,6 @@ export const CollectionArtworksFilter: React.FC<CollectionArtworksFilterProps> =
         relayVariables={{
           slug,
         }}
-        FilterPillsSection={<ActiveFilterPills />}
       />
     </ArtworkFilterContextProvider>
   )

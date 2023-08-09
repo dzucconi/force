@@ -41,11 +41,7 @@ const TagArtworkFilter: React.FC<TagArtworkFilterProps> = ({ tag, relay }) => {
       }
       userPreferredMetric={userPreferences?.metric}
     >
-      <BaseArtworkFilter
-        relay={relay}
-        viewer={tag}
-        FilterPillsSection={<ActiveFilterPills />}
-      />
+      <BaseArtworkFilter relay={relay} viewer={tag} />
     </ArtworkFilterContextProvider>
   )
 }

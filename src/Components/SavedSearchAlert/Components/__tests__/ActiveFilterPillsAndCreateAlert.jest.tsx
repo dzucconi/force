@@ -1,8 +1,5 @@
 import { screen, fireEvent, render } from "@testing-library/react"
-import {
-  FilterPill,
-  SavedSearchEntity,
-} from "Components/SavedSearchAlert/types"
+import { SavedSearchEntity } from "Components/SavedSearchAlert/types"
 import { OwnerType } from "@artsy/cohesion"
 import {
   ActiveFilterPillsAndCreateAlert,
@@ -40,28 +37,6 @@ describe("ActiveFilterPillsAndCreateAlert", () => {
 
     expect(screen.getByText("Yellow")).toBeInTheDocument()
     expect(screen.getByText("Pink")).toBeInTheDocument()
-  })
-
-  it("renders default pills", () => {
-    const defaultPills: FilterPill[] = [
-      {
-        isDefault: true,
-        value: "artistOne",
-        displayValue: "Artist One",
-        field: "artistIDs",
-      },
-      {
-        isDefault: true,
-        value: "artistTwo",
-        displayValue: "Artist Two",
-        field: "artistIDs",
-      },
-    ]
-
-    render(<TestWrapper defaultPills={defaultPills} />)
-
-    expect(screen.getByText("Artist One")).toBeInTheDocument()
-    expect(screen.getByText("Artist Two")).toBeInTheDocument()
   })
 
   it("removes pill after click on it", () => {

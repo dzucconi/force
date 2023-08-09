@@ -65,7 +65,6 @@ const ShowArtworksFilter: React.FC<ShowArtworksFilterProps> = props => {
         relayVariables={{
           aggregations: ["TOTAL"],
         }}
-        FilterPillsSection={<ActiveFilterPills />}
         {...rest}
       />
     </ArtworkFilterContextProvider>

@@ -44,11 +44,7 @@ const GeneArtworkFilter: React.FC<GeneArtworkFilterProps> = ({
       counts={sidebar?.counts as Counts}
       userPreferredMetric={userPreferences?.metric}
     >
-      <BaseArtworkFilter
-        relay={relay}
-        viewer={gene}
-        FilterPillsSection={<ActiveFilterPills />}
-      />
+      <BaseArtworkFilter relay={relay} viewer={gene} />
     </ArtworkFilterContextProvider>
   )
 }

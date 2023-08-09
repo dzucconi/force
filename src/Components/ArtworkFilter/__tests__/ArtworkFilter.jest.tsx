@@ -35,7 +35,6 @@ describe("ArtworkFilter", () => {
   let sortOptionsMock
   let filters
   let breakpoint
-  let FilterPillsSection
 
   const { renderWithRelay } = setupTestWrapperTL({
     Component: (props: any) => (
@@ -46,7 +45,6 @@ describe("ArtworkFilter", () => {
           onChange={onChange}
           sortOptions={sortOptionsMock}
           filters={{ ...initialArtworkFilterState, ...filters }}
-          FilterPillsSection={FilterPillsSection}
         />
       </MockBoot>
     ),
@@ -65,7 +63,6 @@ describe("ArtworkFilter", () => {
     filters = {
       colors: ["yellow", "pink"],
     }
-    FilterPillsSection = undefined
     sortOptionsMock = [
       { value: "sortTest1", text: "Sort Test 1" },
       { value: "sortTest2", text: "Sort Test 2" },
@@ -74,13 +71,6 @@ describe("ArtworkFilter", () => {
 
   afterEach(() => {
     jest.clearAllMocks()
-  })
-
-  it("renders content above artworks when FilterPillsSection prop is passed", () => {
-    FilterPillsSection = <Text>FilterPillsSection</Text>
-    renderWithRelay()
-
-    expect(screen.getByText("FilterPillsSection")).toBeInTheDocument()
   })
 
   describe("without any filtered artworks", () => {

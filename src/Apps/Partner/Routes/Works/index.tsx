@@ -51,12 +51,7 @@ export const Artworks: React.FC<PartnerArtworkFilterProps> = ({
       }
       counts={sidebar?.counts as Counts}
     >
-      <BaseArtworkFilter
-        relay={relay}
-        offset={200}
-        viewer={partner}
-        FilterPillsSection={<ActiveFilterPills />}
-      />
+      <BaseArtworkFilter relay={relay} offset={200} viewer={partner} />
     </ArtworkFilterContextProvider>
   )
 }

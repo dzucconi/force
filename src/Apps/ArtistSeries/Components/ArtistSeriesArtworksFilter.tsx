@@ -54,7 +54,6 @@ const ArtistSeriesArtworksFilter: React.FC<
           aggregations: ["TOTAL"],
           first: 20,
         }}
-        FilterPillsSection={<ActiveFilterPills />}
       />
     </ArtworkFilterContextProvider>
   )

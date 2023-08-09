@@ -44,7 +44,6 @@ export const SearchResultsArtworksRoute: React.FC<SearchResultsRouteProps> = pro
         { value: "year", text: "Artwork Year (Ascending)" },
       ]}
       Filters={<SearchResultsArtworksFilters />}
-      FilterPillsSection={<ActiveFilterPills />}
       userPreferredMetric={userPreferences?.metric}
     />
   )

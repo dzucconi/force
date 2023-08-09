@@ -57,7 +57,6 @@ const AuctionArtworkFilter: React.FC<AuctionArtworkFilterProps> = ({
             <MediumFilter expanded />
           </Join>
         }
-        FilterPillsSection={<ActiveFilterPills />}
       />
     </ArtworkGridContextProvider>
   )

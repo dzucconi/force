@@ -92,7 +92,6 @@ const FairArtworksFilter: React.FC<FairArtworksFilterProps> = props => {
         relay={relay}
         viewer={fair}
         Filters={Filters}
-        FilterPillsSection={<ActiveFilterPills />}
       />
     </ArtworkFilterContextProvider>
   )
